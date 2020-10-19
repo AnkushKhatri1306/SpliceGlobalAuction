@@ -1,0 +1,29 @@
+.login-form{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.auth-page{
+    background-color: #ddecf1;
+    min-height: 100%;
+}
+.user-type-1{
+    background-color: #b2b2f5;
+    border: 2px solid #7272ef;   
+    padding: 10px 15px 10px 15px;
+    font-weight: 500;
+    border-radius: 15%;
+    cursor: pointer;
+}
+.user-type-2{
+    background-color: white;
+    border: 2px solid #7272ef;   
+    padding: 10px 15px 10px 15px;
+    font-weight: 500;
+    border-radius: 15%;
+    cursor: pointer;
+}
+.m-r-20px{
+    margin-right: 20px;;
+}

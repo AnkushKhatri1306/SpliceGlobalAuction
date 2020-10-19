@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body, #fullheight {
+    min-height: 100% !important;
+    height: 100%;
+}
+/* div {
+    height: 100%;
+} */
+
+/* MARGIN TOP START*/
+.m-t-20per{
+    margin-top: 20%;
+}
+
+/* MARGIN TOP BOTTOM START */
+.m-t-b-10px{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+/* BACKGROUND COLOR */
+
+.b-c-f3f3f3{
+    background-color: #f3f3f3;
+}
+
+/* FLOAT */
+.pull-right{
+    float: right;
+}
+
+/* CURSOR */
+.cursor-disabled{
+    cursor: not-allowed;
+}
+.hand-pointer{
+    cursor: pointer;
+}
+
+/* TEXT ALIGN */
+.t-a-end{
+    text-align: end;
+}
+
+/* COLOR */
+
+.color-red{
+    color: red;
+}
+
+/* CUSTOME */
+.custom-anchor:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.custom-anchor{
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.b-c-e2e2f3{
+    background-color: #e2e2f3;
+}

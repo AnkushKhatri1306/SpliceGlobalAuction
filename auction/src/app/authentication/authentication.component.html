@@ -1,0 +1,133 @@
+<div class="col-md-12 row auth-page">
+    <form *ngIf="isLogin" #myForm="ngForm" class="col-md-4 login-form">
+        <div class="col-md-12 form-group m-t-20per">
+            <div class="col-md-12">
+                <h2>LOGIN</h2>
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="email" placeholder="Email" class="col-md-12 form-control" 
+                        [(ngModel)]="user.username" name="username" required>
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="password" placeholder="Password" class="col-md-12 form-control" [(ngModel)]="user.password"
+                        name="password" required>
+            </div>
+            <div *ngIf="isUnauthorized" class="col-md-12 form-group">
+                <span class="col-md-12 color-red">{{ loginErrorMsg }}</span>
+            </div>
+            <div class="col-md-12 form-group t-a-end">
+                <i class="custom-anchor" (click)="isLogin = !isLogin">Sign up</i>
+            </div>
+            <div class="col-md-12 form-group">
+                <button class="btn btn-success col-md-12" (click)="login()" [disabled]="myForm.invalid">Login</button>
+            </div>
+        </div>    
+    </form>
+    <form *ngIf="!isLogin" #registerForm="ngForm" class="col-md-8 login-form">
+        <div class="col-md-12 form-group row">
+            <div class="col-md-12">
+                <h2>Registration Form</h2>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6 form-group row">
+                    <div [ngClass]="registerData.userType == '1' ? 'user-type-1' :'user-type-2'" 
+                            (click)="setVendorData('1')" class="m-r-20px col-md-3">Vendor</div>
+                    <div [ngClass]="registerData.userType == '2' ? 'user-type-1' :'user-type-2'" 
+                            (click)="setVendorData('2')" class="col-md-3">Bidder</div>
+                    <!-- <input type="radio" class="" value="1"
+                            [(ngModel)]="registerData.userType" name="userType"/> Vendor -->
+                </div>                
+                <!-- <div class="col-md-6 form-group">
+                    <button [ngClass]="registerData.userType == '2' ? 'user-type-1' :'user-type-2'" 
+                            (click)="setVendorData('2')">Bidder</button>
+                    <input type="radio" class="" value="2"
+                            [(ngModel)]="registerData.userType" name="userType"/> Bidder
+                </div>  -->
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" placeholder="First Name" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.firstName" name="firstName" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" placeholder="Last Name" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.lastName" name="lastName" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="email" placeholder="Email" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.email" name="email" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="email" placeholder="Confirm Email" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.confirmEmail" name="confirmEmail" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="password" placeholder="Password" class="col-md-12 form-control" [(ngModel)]="registerData.password"
+                        name="password" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="password" placeholder="Confirm Password" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.confirmPassword"
+                        name="confirmPassword" required>
+            </div>
+            <div *ngIf="registerData.password != registerData.confirmPassword" class="col-md-12 form-group">
+                <span class="col-md-12 color-red">Password and confirm password are not same .</span>
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="text" placeholder="Company Name" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.companyName" name="companyName" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" placeholder="Mobile No" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.mobileNumber"
+                        name="mobileNumber" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" placeholder="Telephone" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.telephone"
+                        name="telephone" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" placeholder="Address Lane 1" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.addressLaneOne"
+                        name="addressLaneOne" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" placeholder="Address Lane 2" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.addressLaneTwo"
+                        name="addressLaneTwo" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" placeholder="City" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.city"
+                        name="city" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="number" placeholder="Postal Zip" class="col-md-12 form-control" 
+                        [(ngModel)]="registerData.postalZip"
+                        name="postalZip" required>
+            </div>
+            <div class="col-md-6 form-group">
+                <select  class='form-control col-md-12' [(ngModel)]="registerData.country"
+                         [value]='registerData.country' name="country" required>
+                        <option value='default'>-- Country --</option>
+                        <option value='1'>America</option>
+                        <option value='2'>Germany</option>
+                        <option value='3'>Australia</option>
+                        <option value='4'>France</option>
+                </select>  
+            </div>
+            <div class="col-md-6 form-group">
+                <input type="text" placeholder="State" class="col-md-12 form-control" 
+                    [(ngModel)]="registerData.state"
+                        name="state" required>
+            </div>
+            <div class="col-md-12 form-group t-a-end">
+                <i class="custom-anchor" (click)="isLogin = !isLogin">Login</i>
+            </div>
+            <div class="col-md-12 form-group">
+                <button class="btn btn-success col-md-12" (click)="signUp()" 
+                        [disabled]="registerForm.invalid || (registerData.password != registerData.confirmPassword)">Submit</button>
+            </div>
+        </div>    
+    </form>
+</div>
