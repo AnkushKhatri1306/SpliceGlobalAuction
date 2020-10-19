@@ -119,11 +119,15 @@ def get_user_details(request):
     success = False
     msg = 'Error in getting user details .'
     try:
-        data['firstName'] = request.user.first_name
-        data['lastName'] = request.user.last_name
-        data['userId'] = request.user.id
-        data['username'] = request.user.username
-        data['email'] = request.user.email
+        obj = UserProfileDetails.objects.filter(user_id=request.user.id).first()
+        if obj:
+            serializer = UserProfileDetailsSerializer(obj)
+            data = serializer.data
+            data['firstName'] = request.user.first_name
+            data['lastName'] = request.user.last_name
+            data['userId'] = request.user.id
+            data['username'] = request.user.username
+            data['email'] = request.user.email
         success = True
         msg = 'Success in getting user details .'
     except Exception as e:

@@ -1,12 +1,18 @@
 from rest_framework import  serializers
-from django.contrib.auth.models import User
+from .models import *
+from auction.config import *
 
-
-class UserSerializer(serializers.ModelSerializer):
-    user_id = serializers.CharField(source='id')
-    firstName = serializers.CharField(source='first_name')
-    lastName = serializers.CharField(source='last_name')
+class UserProfileDetailsSerializer(serializers.ModelSerializer):
+    userType = serializers.SerializerMethodField()
 
     class Meta:
-        model = User
-        fields = ('user_id', 'firstName', 'lastName', 'email')
+        model = UserProfileDetails
+        fields = ('userType',)
+
+    def get_userType(self, obj):
+        user_type = ''
+        try:
+            user_type = DEFAULT_USER_TYPE.get(obj.user_type, '')
+        except Exception as e:
+            print(e.args)
+        return user_type
