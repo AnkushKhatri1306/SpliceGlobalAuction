@@ -23,6 +23,9 @@ def register_user_data(request):
             if post_data:
                 success, msg = check_user_register_data_validation(post_data)
                 if success:
+                    obj = User.objects.filter(username=post_data.get('email')).first()
+                    if obj:
+                        return False, 'Error in user registration . Email id already exists.'
                     user_obj = User()
                     user_obj.first_name = post_data.get('firstName')
                     user_obj.last_name = post_data.get('lastName')
